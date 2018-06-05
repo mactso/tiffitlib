@@ -1,0 +1,16 @@
+[
+{
+  "modid": "tiffitlib",
+  "name": "TiffitLib",
+  "description": "Library of code.",
+  "version": "${version}",
+  "mcversion": "${mcversion}",
+  "url": "",
+  "updateUrl": "",
+  "authorList": ["Tiffit"],
+  "credits": "Tiffit",
+  "logoFile": "",
+  "screenshots": [],
+  "dependencies": []
+}
+]
