@@ -25,7 +25,12 @@ public class GuiManager implements IGuiHandler{
 		private Class<? extends GenericContainer> container;
 		private Class<? extends GenericGuiContainer> gui;
 		
-		public GuiElement(Class<? extends TileEntity> te, Class<? extends GenericContainer> container, Class<? extends GenericGuiContainer> gui){
+		@SuppressWarnings("unchecked")
+		public GuiElement(String prefix, String te, String container, String gui) throws ClassNotFoundException{
+			this((Class<? extends TileEntity>)Class.forName(prefix + te), (Class<? extends GenericContainer>)Class.forName(prefix + container), (Class<? extends GenericGuiContainer>) Class.forName(prefix + gui));
+		}
+		
+		private GuiElement(Class<? extends TileEntity> te, Class<? extends GenericContainer> container, Class<? extends GenericGuiContainer> gui){
 			this.te = te;
 			this.container = container;
 			this.gui = gui;
