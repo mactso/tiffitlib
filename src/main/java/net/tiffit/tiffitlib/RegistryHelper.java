@@ -3,13 +3,13 @@ package net.tiffit.tiffitlib;
 import java.util.ArrayList;
 import java.util.List;
 
-import codechicken.lib.render.item.IItemRenderer;
 import net.minecraft.block.Block;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemMultiTexture;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
+import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.minecraftforge.registries.IForgeRegistry;
 import net.tiffit.tiffitlib.client.ClientRegistryHelper;
@@ -67,8 +67,12 @@ public class RegistryHelper {
 		ClientRegistryHelper.registerModels(registeredItems, registeredBlocks);
 	}
 
-	@SuppressWarnings("deprecation")
+	@Deprecated
 	public void registerTileEntity(Class<? extends TileEntity> tileEntityClass, String key) {
+		GameRegistry.registerTileEntity(tileEntityClass, key);
+	}
+	
+	public void registerTileEntity(Class<? extends TileEntity> tileEntityClass, ResourceLocation key) {
 		GameRegistry.registerTileEntity(tileEntityClass, key);
 	}
 

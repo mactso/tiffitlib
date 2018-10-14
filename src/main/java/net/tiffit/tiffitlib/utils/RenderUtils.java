@@ -2,6 +2,7 @@ package net.tiffit.tiffitlib.utils;
 
 import org.lwjgl.opengl.GL11;
 
+import codechicken.lib.vec.Cuboid6;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.BufferBuilder;
 import net.minecraft.client.renderer.GlStateManager;
@@ -57,13 +58,25 @@ public class RenderUtils {
         GlStateManager.enableTexture2D();
 	}
 	
+	public static void renderBoxColor(float minX, float minY, float minZ, float maxX, float maxY, float maxZ, int color){
+		float b = ((color)&0xFF) /255f;
+		float g = ((color>>8)&0xFF) /255f;
+		float r = ((color>>16)&0xFF) /255f;
+		float a = ((color>>24)&0xFF) /255f;
+		GlStateManager.disableTexture2D();
+		GlStateManager.color(r, g, b, a);
+		codechicken.lib.render.RenderUtils.drawCuboidSolid(new Cuboid6(minX, minY, minZ, maxX, maxY, maxZ));
+		GlStateManager.color(1, 1, 1, 1);
+		GlStateManager.enableTexture2D();
+	}
+	
 	public static void renderCircle(){
-		bindText(blank);
+		bind(blank);
 		GL11.glCallList(ClientProxy.defierSphereIdOutside);
 		GL11.glCallList(ClientProxy.defierSphereIdInside);
 	}
 	
-	public static void bindText(ResourceLocation loc){
+	public static void bind(ResourceLocation loc){
 		Minecraft.getMinecraft().getTextureManager().bindTexture(loc);
 	}
 	
