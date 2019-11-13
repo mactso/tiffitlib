@@ -27,14 +27,14 @@ public class GuiManager implements IGuiHandler{
 		
 		@SuppressWarnings("unchecked")
 		public GuiElement(String prefix, String te, String container, String gui) throws ClassNotFoundException{
-			this((Class<? extends TileEntity>)Class.forName(prefix + te), (Class<? extends GenericContainer>)Class.forName(prefix + container), (Class<? extends GenericGuiContainer>) Class.forName(prefix + gui));
+		    this.te = (Class<? extends TileEntity>)Class.forName(prefix + te);
+		    this.container = (Class<? extends GenericContainer>)Class.forName(prefix + container);
+		    try {
+			this.gui = (Class<? extends GenericGuiContainer>)Class.forName(prefix + gui);
+		    } catch (Exception e) {
+		    }
 		}
-		
-		private GuiElement(Class<? extends TileEntity> te, Class<? extends GenericContainer> container, Class<? extends GenericGuiContainer> gui){
-			this.te = te;
-			this.container = container;
-			this.gui = gui;
-		}
+
 	}
 	
 	@Override
